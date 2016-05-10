@@ -15,3 +15,6 @@ require(RcppArmadillo)
 sourceCpp("method.cpp")
 
 # メソッド確認----
+calcCorrate(matSize = 10)
+
+getCorrate(dataMatrix = as.matrix(iris[, -5]))

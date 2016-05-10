@@ -1,25 +1,24 @@
 //#include <Armadillo>
 #include <RcppArmadillo.h>
 
-int jisakudouble(int x){
-  int y = x*2;
-  return(y);
+// Cの関数はそのまま書く
+arma::mat getRandomMatrix(int matSize = 3){
+  arma::mat randomMatrix  = arma::randn(matSize, matSize);
+  return (randomMatrix);
 }
 
-arma::mat jisakumat(int n = 3,int t=2){
-  arma::mat m = arma::zeros<arma::mat>(n,n);
-  int k = 0;
-  for(int r=0; r<n; ++r){
-    for(int c=0; c<n; ++c){
-      m(r, c) = ++k + jisakudouble(t*r);
-    }
-  }
-  return(m);
+// Rのから呼び出す関数は下2行を足す
+// [[Rcpp::depends(RcppArmadillo)]]
+// [[Rcpp::export]]
+arma::mat calcCorrate(int matSize = 3){
+  arma::mat randomMatrix = getRandomMatrix(matSize);
+  arma::mat corMatrix = cor(randomMatrix, randomMatrix);
+  return(corMatrix);
 }
 
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
-arma::mat toR(int n, int t){
-  arma::mat m = jisakumat(n,t);
-  return(m);
+arma::mat getCorrate(arma::mat dataMatrix){
+  arma::mat corMatrix = cor(dataMatrix, dataMatrix);
+  return(corMatrix);
 }
