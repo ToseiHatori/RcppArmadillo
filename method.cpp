@@ -3,8 +3,9 @@
 
 // Cの関数はそのまま書く
 arma::mat getRandomMatrix(int matSize = 3){
-  arma::mat randomMatrix  = arma::randn(matSize, matSize);
-  return (randomMatrix);
+  arma::mat randomMatrix1  = arma::randn(matSize, matSize);
+  arma::mat randomMatrix2  = arma::randn(matSize, matSize);
+  return (randomMatrix1 + randomMatrix2);
 }
 
 // Rのから呼び出す関数は下2行を足す
