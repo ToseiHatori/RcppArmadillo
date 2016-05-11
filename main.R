@@ -1,5 +1,9 @@
 # RcppArmadilloの練習
 
+# 初期化----
+rm(list = ls())
+gc();gc();
+
 # パッケージ----
 if(!require(Rcpp)){
   install.packages("Rcpp", dependencies = T)
@@ -16,5 +20,4 @@ sourceCpp("method.cpp")
 
 # メソッド確認----
 calcCorrate(matSize = 10)
-
 getCorrate(dataMatrix = as.matrix(iris[, -5]))
